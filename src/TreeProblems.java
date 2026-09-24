@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
@@ -38,7 +39,7 @@ public class TreeProblems {
   }
 
   /*
-   postOrder (Node Version)
+   postOrder (Map Version)
    -----------
    Given the root of a tree print out the values of the nodes in post-order.
    Print each value on a separate line.
@@ -62,6 +63,14 @@ public class TreeProblems {
    5
    */
   public static <T> void postOrder(Map<T, List<T>> tree, T root) {
+    if (tree == null || root == null) return;
+    if (!tree.containsKey(root)) return;
+    
+    for (T child : tree.getOrDefault(root, new ArrayList<>())) {
+      postOrder(tree, child);
+    }
+
+    System.out.println(root);
   }
 
   /*
